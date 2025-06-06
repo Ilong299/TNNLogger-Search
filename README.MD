@@ -88,21 +88,58 @@ Here's a detailed list of the available search parameters:
     * `senttimemins:0-15` - Finds messages sent within the first 15 minutes of an hour.
     * `senttimemins:0,15,30,45` - Finds messages sent at the 0, 15, 30, or 45th minute of an hour.
 
+---
+
+## Output Control Parameters
+
+TNNLogger provides additional parameters to control the display and storage of search results. These are appended to your search query.
+
+### `loglevel`
+
+* **Description:** Controls the verbosity of logging for files processed during a search.
+* **Value Type:** `false`, `true`, `true-console`, or `absolute`.
+* **Examples:**
+    * `loglevel:false` - No logs about the checked files will be displayed.
+    * `loglevel:true` - Logs of the checked files will be shown to the sender.
+    * `loglevel:true-console` - Logs of the checked files will be displayed in the console.
+    * `loglevel:absolute` - Logs will be displayed to both the sender and the console.
+
+### `searchres`
+
+* **Description:** Dictates where the search results are outputted.
+* **Value Type:** `file(filename.extension)`, `inchat`, or `both`.
+* **Examples:**
+    * `searchres:file(results.txt)` - Results will be saved to `results.txt`.
+    * `searchres:file()` - Results will be saved to a file with a default name.
+    * `searchres:inchat` - Results will be displayed directly in the chat or interface.
+    * `searchres:both` - Results will be saved to a file and displayed in the chat.
+
+### `searchreshow`
+
+* **Description:** Controls how many search results are displayed.
+* **Value Type:** `all` or `limit(intLimit)`.
+* **Examples:**
+    * `searchreshow:all` - All search results will be displayed.
+    * `searchreshow:limit(50)` - Only the first 50 results will be shown.
+    * `searchreshow:limit()` - Shows results with the default limit of 20. If `searchres` is `inchat` and results exceed the limit, they will be paginated.
+
+---
+
 ## Combined Search Examples
 
-Here are some practical examples demonstrating how to combine multiple parameters:
+Here are some practical examples demonstrating how to combine multiple parameters, including output controls:
 
-* **Find commands sent by specific users between 11 AM and 1 PM:**
-    `/tnnlogger-search isCommand:true senttimehours:11-13 sender:UserA,UserB`
+* **Find commands sent by specific users between 11 AM and 1 PM, showing logs in console and results in chat:**
+    `/tnnlogger-search isCommand:true senttimehours:11-13 sender:UserA,UserB loglevel:true-console searchres:inchat`
 
-* **Find messages containing "error" sent on any day in March 2023:**
-    `/tnnlogger-search content:*error* sentdate:*.03.2023`
+* **Find messages containing "error" sent on any day in March 2023, saving all results to a file:**
+    `/tnnlogger-search content:*error* sentdate:*.03.2023 searchres:file(error_logs_march_2023.txt) searchreshow:all`
 
-* **Find messages sent by users whose names contain "i" or "e", between 11 AM and 1 PM:**
-    `/tnnlogger-search senttimehours:11-13 sender:*i*,*e*`
+* **Find messages sent by users whose names contain "i" or "e", between 11 AM and 1 PM, showing logs to sender and limiting results to 10 in chat:**
+    `/tnnlogger-search senttimehours:11-13 sender:*i*,*e* loglevel:true searchres:inchat searchreshow:limit(10)`
 
-* **Find any message sent at exactly 10:00 AM on March 3rd, 2023:**
-    `/tnnlogger-search sentdate:03.03.2023 senttimehours:10 senttimemins:0`
+* **Find any message sent at exactly 10:00 AM on March 3rd, 2023, displaying all logs and sending results to both file and chat:**
+    `/tnnlogger-search sentdate:03.03.2023 senttimehours:10 senttimemins:0 loglevel:absolute searchres:both searchreshow:all`
 
 ---
 
