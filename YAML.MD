@@ -52,3 +52,31 @@ To streamline your workflow, TNNLogger provides an option for automatic file unl
     Executing this command will switch the `autounload` setting. Running it once might enable it, and running it again might disable it (the exact behavior depends on its implementation as a toggle).
 
 ---
+
+## Search Results Output
+
+TNNLogger offers flexible options for how search results are displayed and stored.
+
+### `tnnlogger loglevel <false | true | true-console | absolute>`
+
+* **Description:** This parameter controls the verbosity of logging for files being processed during a search operation.
+* **Parameters:**
+    * `false`: No logs about the checked files will be displayed.
+    * `true`: Logs of the checked files will be shown to the sender (e.g., the user who initiated the search).
+    * `true-console`: Logs of the checked files will be displayed in the console where TNNLogger is running.
+    * `absolute`: Logs of the checked files will be displayed to both the sender and the console.
+
+### `tnnlogger searchres <file(filename.extension) | inchat | both>`
+
+* **Description:** This parameter dictates where the search results are outputted.
+* **Parameters:**
+    * `file(filename.extension)`: Results will be saved to a file. You can optionally specify the `filename.extension` (e.g., `results.txt`). If you don't provide a filename, TNNLogger will use a default naming convention.
+    * `inchat`: Results will be displayed directly in the chat or interface where the command was issued.
+    * `both`: Results will be saved to a file and also displayed in the chat/interface.
+
+### `tnnlogger searchreshow <all | limit(intLimit)>`
+
+* **Description:** This parameter controls how many search results are displayed.
+* **Parameters:**
+    * `all`: All search results will be displayed.
+    * `limit(intLimit)`: Only a limited number of results will be shown. You can specify the `intLimit` (e.g., `limit(50)`). If you don't provide an `intLimit`, the default is 20 results. If the total number of results exceeds the limit and `searchres` is set to `inchat`, the results will be paginated.
