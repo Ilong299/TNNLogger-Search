@@ -96,12 +96,12 @@ TNNLogger provides additional parameters to control the display and storage of s
 
 ### `loglevel`
 
-* **Description:** Controls the verbosity of logging for files processed during a search.
+* **Description:** Controls the verbosity of logging for files/records(yaml/mysql)/records processed during a search.
 * **Value Type:** `false`, `true`, `true-console`, or `absolute`.
 * **Examples:**
-    * `loglevel:false` - No logs about the checked files will be displayed.
-    * `loglevel:true` - Logs of the checked files will be shown to the sender.
-    * `loglevel:true-console` - Logs of the checked files will be displayed in the console.
+    * `loglevel:false` - No logs about the checked files/records(yaml/mysql) will be displayed.
+    * `loglevel:true` - Logs of the checked files/records(yaml/mysql) will be shown to the sender.
+    * `loglevel:true-console` - Logs of the checked files/records(yaml/mysql) will be displayed in the console.
     * `loglevel:absolute` - Logs will be displayed to both the sender and the console.
 
 ### `searchres`
