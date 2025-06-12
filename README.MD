@@ -1,4 +1,5 @@
 # TNNLogger Search Tutorial
+## WARNING: A new release of TNNLogger is currently under development.
 
 This document outlines how to effectively use the search functionality within TNNLogger.
 
